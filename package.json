@@ -1,0 +1,19 @@
+{
+  "name": "cool-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+      "start": "wds --node-resolve --app-index demo/index.html --open --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "prettier": {
+    "tabWidth": 4,
+    "printWidth": 120,
+    "semi": true
+  },
+  "devDependencies": {
+    "@web/dev-server": "0.0.15"
+  }
+}
