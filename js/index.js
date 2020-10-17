@@ -3,8 +3,9 @@ class BlockSquareArea extends HTMLElement {
     constructor() {
         super();
 
-        this.rows = 20;
-        this.cols = 20;
+        this.rows = 80;
+        this.cols = 80;
+        document.query
 
         this.attachShadow({mode: "open"});
     }
@@ -34,7 +35,9 @@ class BlockSquareArea extends HTMLElement {
     }
 
     async doRipple(x, y) {
+        const distanceList = [];
         for (let nx = 0; nx < this.cols; nx++) {
+            distanceList[nx] = [];
             for (let ny = 0; ny < this.rows; ny++) {
                 const b = this.blockArr[nx][ny];
                 this.handleTransitionEnd(b);
@@ -42,6 +45,14 @@ class BlockSquareArea extends HTMLElement {
                 const dx = Math.max(nx, x) - Math.min(nx, x);
                 const dplus = (Math.max(dx, dy) - Math.min(dx, dy)) / 2.25;
                 const distance = dx + dy + dplus;
+                distanceList[nx][ny] = distance;
+            }
+        }
+
+        for (let c = 0; c < this.cols; c++) {
+            for (let r = 0; r < this.rows; r++) {
+                const b = this.blockArr[c][r];
+                const distance = distanceList[c][r];
                 b.setAttribute("ripple", "")
                 b.style.setProperty("--distance", distance);
             }
